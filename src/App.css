@@ -44,3 +44,14 @@ body {
 .copyright {
   display: block;
 }
+
+/* content style */
+
+.content {
+  margin: 50px 0;
+}
+
+.card-btn {
+  background-color: #014968;
+  color: #ffff;
+}
