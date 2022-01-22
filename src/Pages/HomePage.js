@@ -7,9 +7,6 @@ import Product from "../Components/Product";
 const HomePage = () => {
   const [product, setProduct] = useState([]);
 
-  useEffect(() => {
-    getData();
-  }, []);
   //to add data to firestore for the first time
   // const addData = async () => {
   //   products.map(async (product) => {
@@ -39,11 +36,21 @@ const HomePage = () => {
     }
   };
 
+  useEffect(() => {
+    const abortController = new AbortController();
+    getData();
+
+    return () => {
+      abortController.abort();
+    };
+  }, []);
+
   return (
     <>
       <Layout>
         <div className="container">
           <div className="row">
+            <h2>Our Products</h2>
             {product?.map((e) => (
               <Product data={e} key={e.id} />
             ))}
