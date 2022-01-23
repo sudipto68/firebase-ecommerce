@@ -3,11 +3,13 @@ import Layout from "../Components/Layout";
 import { collection, getDocs } from "firebase/firestore";
 import fireDb from "../firebaseConfig";
 import Product from "../Components/Product";
+import Loading from "../Components/Loading";
+// import { products } from "../ProductList";
 
 const HomePage = () => {
   const [product, setProduct] = useState([]);
 
-  //to add data to firestore for the first time
+  // to add data to firestore for the first time
   // const addData = async () => {
   //   products.map(async (product) => {
   //     try {
@@ -49,11 +51,17 @@ const HomePage = () => {
     <>
       <Layout>
         <div className="container">
-          <div className="row">
+          <div className="row justify-content-center">
             <h2>Our Products</h2>
-            {product?.map((e) => (
-              <Product data={e} key={e.id} />
-            ))}
+            {/* <button className="btn btn-primary" onClick={addData}>
+              Add Products
+            </button> */}
+
+            {product ? (
+              product.map((e) => <Product data={e} key={e.id} />)
+            ) : (
+              <Loading />
+            )}
           </div>
         </div>
       </Layout>

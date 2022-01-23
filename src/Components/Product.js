@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const Product = (props) => {
   const { image, title, price, id } = props.data;
+
   const navigate = useNavigate();
   return (
     <>
@@ -27,7 +28,7 @@ const Product = (props) => {
             <h2 className="price">Price: {price}$</h2>
             <button
               className="btn card-btn text-center"
-              onClick={() => navigate("/productInfo/" + id)}
+              onClick={() => navigate(`productInfo/${id}`)}
             >
               See Details
             </button>
