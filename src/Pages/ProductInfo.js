@@ -38,26 +38,33 @@ const ProductInfo = () => {
       </button> */}
 
       {product ? (
-        <div
-          className="product-detail text-center d-flex flex-column align-items-center px-2"
-          style={{ maxWidth: "600px", margin: "0 auto" }}
-        >
-          <div className="title">
-            <h5>{product?.title}</h5>
+        <div className="product-detail container">
+          <div className="row justify-content-center">
+            <div className="col-md-8">
+              <div className="title">
+                <h5>{product?.title}</h5>
+              </div>
+              <img
+                className="py-3"
+                src={product.image}
+                alt=""
+                style={{ maxWidth: "400px", height: "400px" }}
+              />
+              <div className="description">
+                <p>{product.description}</p>
+                <h5>Price: {product.price}$</h5>
+              </div>
+              <div className="btns">
+                <button
+                  className="btn card-btn my-3"
+                  onClick={() => navigate("/")}
+                >
+                  Go Back
+                </button>
+                <button className="btn card-btn my-3 ms-2">Add to Cart</button>
+              </div>
+            </div>
           </div>
-          <img
-            className="py-3"
-            src={product.image}
-            alt=""
-            style={{ maxWidth: "400px", height: "400px" }}
-          />
-          <div className="description">
-            <p>{product.description}</p>
-            <h3>Price: {product.price}$</h3>
-          </div>
-          <button className="btn card-btn my-3" onClick={() => navigate("/")}>
-            Go Back
-          </button>
         </div>
       ) : (
         <Loading />
