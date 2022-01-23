@@ -4,6 +4,7 @@ import fireDb from "../firebaseConfig";
 import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../Components/Layout";
 import Loading from "../Components/Loading";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductInfo = () => {
   const navigate = useNavigate();
@@ -30,6 +31,17 @@ const ProductInfo = () => {
       abortController.abort(); // this is the clean up
     };
   }, []);
+
+  const { cartItems } = useSelector((state) => state.cartReducer);
+
+  const dispatch = useDispatch();
+  const addToCart = (product) => {
+    dispatch({ type: "ADD_TO_CART", payload: product });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
     <Layout>
@@ -61,7 +73,12 @@ const ProductInfo = () => {
                 >
                   Go Back
                 </button>
-                <button className="btn card-btn my-3 ms-2">Add to Cart</button>
+                <button
+                  className="btn card-btn my-3 ms-2"
+                  onClick={() => addToCart(product)}
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>

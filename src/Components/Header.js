@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { MdShoppingCart } from "react-icons/md";
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
@@ -42,7 +43,7 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/cart">
-                  Cart({cartItems.length})
+                  <MdShoppingCart size={20} />({cartItems.length})
                 </Link>
               </li>
             </ul>
