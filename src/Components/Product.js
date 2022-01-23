@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Product = (props) => {
   const { image, title, price, id } = props.data;
+
+  const { cartItems } = useSelector((state) => state.cartReducer);
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems)); //adding cart data to lcoal storaage
+  }, [cartItems]);
+
+  const dispatch = useDispatch();
+  const addToCart = (product) => {
+    dispatch({ type: "ADD_TO_CART", payload: product }); //adding product onlick to cart
+  };
 
   const navigate = useNavigate();
   return (
@@ -32,7 +45,12 @@ const Product = (props) => {
             >
               See Details
             </button>
-            <button className="btn card-btn text-center">Add to Cart</button>
+            <button
+              className="btn card-btn text-center"
+              onClick={() => addToCart(props.data)}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>

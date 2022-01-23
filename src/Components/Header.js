@@ -42,7 +42,7 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/cart">
-                  Cart({cartItems})
+                  Cart({cartItems.length})
                 </Link>
               </li>
             </ul>
