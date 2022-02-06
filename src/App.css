@@ -107,6 +107,17 @@ body {
   padding-top: 15px;
 }
 
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-cart img {
+  width: 100%;
+}
+
 @media only screen and (max-width: 768px) {
   .select {
     margin: 20px 0 0 15px;
