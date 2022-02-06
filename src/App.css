@@ -8,6 +8,13 @@ body {
 
 /* navbar style */
 
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .bg-navbar {
   background-color: #014968;
   padding: 15px;
@@ -116,6 +123,7 @@ body {
 
 .empty-cart img {
   width: 100%;
+  max-width: 500px;
 }
 
 @media only screen and (max-width: 768px) {
