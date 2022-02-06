@@ -60,7 +60,7 @@ const ProductInfo = () => {
                 className="py-3"
                 src={product.image}
                 alt=""
-                style={{ maxWidth: "400px", height: "400px" }}
+                style={{ maxWidth: "400px", height: "400px", width: "100%" }}
               />
               <div className="description">
                 <p>{product.description}</p>
