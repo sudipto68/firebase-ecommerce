@@ -8,6 +8,8 @@ import Loading from "../Components/Loading";
 
 const HomePage = () => {
   const [product, setProduct] = useState([]);
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("");
 
   // to add data to firestore for the first time
   // const addData = async () => {
@@ -51,14 +53,37 @@ const HomePage = () => {
     <>
       <Layout>
         <div className="container">
+          <div className="row my-3 d-flex justify-content-between">
+            <div className="search-input col-md-7">
+              <input
+                className="input"
+                type="text"
+                placeholder="Search Product"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <button className="card-btn btn search mx-2">Search</button>
+            </div>
+            <select
+              className="form-select select col-md-5"
+              onChange={(e) => setFilter(e.target.value)}
+              value={filter}
+            >
+              <option value="">ALL</option>
+              <option value="fashion">Fashion</option>
+              <option value="electronics">Electonics</option>
+              <option value="jewellery">Jewellery</option>
+            </select>
+          </div>
+
           <div className="row justify-content-center">
             <h2>Our Products</h2>
-            {/* <button className="btn btn-primary" onClick={addData}>
-              Add Products
-            </button> */}
 
             {product ? (
-              product.map((e) => <Product data={e} key={e.id} />)
+              product
+                .filter((item) => item.title.includes(search))
+                .filter((item) => item.category.includes(filter))
+                .map((e) => <Product data={e} key={e.id} />)
             ) : (
               <Loading />
             )}
