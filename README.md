@@ -10,6 +10,12 @@ I have not implemented any authentication for this project yet. I have used Reac
 4. Redux - for state management
 5. Firebase - for datbase
 
+### This project is not completed yet. These things I will add:
+
+1. User Authentication (using firebase google sign in)
+2. Cart Page Product increment/decreament function
+3. More pages
+
 In the project directory, you can run:
 
 ### `npm start`

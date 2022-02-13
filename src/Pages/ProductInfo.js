@@ -21,7 +21,7 @@ const ProductInfo = () => {
     }
   };
 
-  //call the fetch function
+  //call the fetch function after mount
   useEffect(() => {
     const abortController = new AbortController();
 
@@ -45,10 +45,6 @@ const ProductInfo = () => {
 
   return (
     <Layout>
-      {/* <button className="btn card-btn" onClick={() => navigate("/")}>
-        Go Back
-      </button> */}
-
       {product ? (
         <div className="product-detail container">
           <div className="row justify-content-center">

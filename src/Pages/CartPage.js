@@ -7,9 +7,17 @@ import EmptyCart from "../Components/EmptyCart";
 const CartPage = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
+
+  //remove one item
   const removeFromCart = (product) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
   };
+
+  //clear all item from cart
+  const ClearCart = () => {
+    dispatch({ type: "CLEAR_CART" });
+  };
+
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems)); //adding cart data to lcoal storaage
   }, [cartItems]);
@@ -23,17 +31,19 @@ const CartPage = () => {
           <EmptyCart />
         ) : (
           <>
+            <h2 className="mb-4">Shopping Cart Page</h2>
             <table className="table">
               <thead>
                 <tr>
                   <th>Image</th>
                   <th>Name</th>
+                  <th>Amount</th>
                   <th>Action</th>
                   <th>Price</th>
                 </tr>
               </thead>
               <tbody>
-                {cartItems.map((item) => {
+                {cartItems?.map((item) => {
                   return (
                     <tr key={item.id}>
                       <td>
@@ -46,6 +56,7 @@ const CartPage = () => {
                       <td>
                         <h6>{item.title}</h6>
                       </td>
+                      <td>1</td>
                       <td>
                         <MdDelete
                           size={20}
@@ -62,12 +73,19 @@ const CartPage = () => {
                 })}
               </tbody>
             </table>
-            <div className="total d-flex justify-content-end mt-4">
+            <div className="total d-flex justify-content-end mt-4 fw-bold">
               Total Amount - {total} $
             </div>
             <button
+              className="btn btn-danger mb-4 mt-2 mx-3"
+              onClick={ClearCart}
+            >
+              Clear Cart
+            </button>
+            <button
               className="btn card-btn mb-4 mt-2"
               style={{ float: "right" }}
+              onClick={() => alert("This Feature is under working")}
             >
               Place Order
             </button>

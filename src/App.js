@@ -5,6 +5,7 @@ import CartPage from "./Pages/CartPage";
 import Login from "../src/Pages/Login";
 import Registration from "../src/Pages/Registration";
 import ProductInfo from "../src/Pages/ProductInfo";
+import NotFound from "./Pages/NotFound";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/productinfo/:id" element={<ProductInfo />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
