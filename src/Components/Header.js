@@ -37,11 +37,6 @@ const Header = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/">
-                  Logout
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link className="nav-link" to="/cart">
                   <MdShoppingCart size={20} />({cartItems.length})
                 </Link>

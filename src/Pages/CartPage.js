@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "../Components/Layout";
 import { MdDelete } from "react-icons/md";
 import EmptyCart from "../Components/EmptyCart";
+import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineMinus } from "react-icons/ai";
 
 const CartPage = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
@@ -18,11 +20,21 @@ const CartPage = () => {
     dispatch({ type: "CLEAR_CART" });
   };
 
+  //increment product
+  const IncrementProduct = (product) => {
+    dispatch({ type: "INCREMENT", payload: product }); //adding product onlick to cart
+  };
+
+  //decrement product
+  const DecrementProduct = (product) => {
+    dispatch({ type: "DECREMENT", payload: product }); //adding product onlick to cart
+  };
+
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems)); //adding cart data to lcoal storaage
   }, [cartItems]);
 
-  const total = cartItems.reduce((a, c) => a + c.price, 0); //calculating the total amount
+  const total = cartItems.reduce((a, c) => a + c.quantity * c.price, 0); //calculating the total amount
 
   return (
     <Layout>
@@ -56,7 +68,21 @@ const CartPage = () => {
                       <td>
                         <h6>{item.title}</h6>
                       </td>
-                      <td>1</td>
+                      <td>
+                        <span>
+                          <AiOutlinePlus
+                            className="icon"
+                            onClick={() => IncrementProduct(item)}
+                          />
+                        </span>
+                        <span className="quantity">{item.quantity}</span>
+                        <span>
+                          <AiOutlineMinus
+                            className="icon"
+                            onClick={() => DecrementProduct(item)}
+                          />
+                        </span>
+                      </td>
                       <td>
                         <MdDelete
                           size={20}
@@ -66,7 +92,10 @@ const CartPage = () => {
                         />
                       </td>
                       <td>
-                        <h6>{item.price} $</h6>
+                        <h6>
+                          {item.quantity} X {item.price} ={" "}
+                          {item.price * item.quantity}$
+                        </h6>
                       </td>
                     </tr>
                   );

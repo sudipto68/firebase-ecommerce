@@ -136,6 +136,21 @@ body {
   justify-content: center;
 }
 
+.quantity {
+  margin: 0 10px;
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 20px;
+  border: 1px solid #707070;
+  border-radius: 2px;
+}
+
+.table > tbody {
+  vertical-align: unset;
+}
+
 @media only screen and (max-width: 768px) {
   .select {
     margin: 20px 0 0 15px;
